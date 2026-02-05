@@ -1,0 +1,104 @@
+---
+title: "index"
+author: "Hannah Barrow"
+date: "2026-02-03"
+output: html_document
+---
+
+# Markdown
+
+Markdown is a way to make fancy documents. 
+Make sure you "Knit" often -- after every major change -- to mitigate errors. 
+Hashtags are how we make levels of a doc. 
+
+## Next Level
+### Next level
+#### Fourth level
+##### etc. 
+
+# Basic formatting 
+
+This is **bold** (that's double asterisks). Or *italics*. Or `code`. 
+
+- this is the start of a list. 
+- next item. 
+- next item. make sure you have a space at the end of item. 
+
+1. this is a numbered list. 
+2. second item. 
+
+To add a hyperlink, do `[link text](url)`. 
+For example, [go here](https://www.sewanee.edu). 
+
+To link to sections of your document, do `[link text](#section-name)`. 
+For example, go to [Markdown](#markdown). 
+^keep in mind, no backticks, all lowercase, _ instead of spaces. 
+
+To add more vertical spaces between blocks ot text, use this: `&nbsp;`, with lines between them. 
+
+&nbsp; 
+
+&nbsp; 
+
+Should be more space now. 
+
+**To include an image -- fun!**
+First put an image inside the folder where you `Rmd` file is located. 
+Then type `![](../images/full_image_filename_here){width="50%"}` 
+
+![](../images/test_image.jpg){width="50%"}
+
+# RMarkdown
+
+`RMarkdown` is just `Markdown` with `R` woven in. 
+
+You can do R stuff in the same line as text. For example `r 3+3` will show as 6. 
+(That looks like backtick, lower-case-r, space, code, backtick). 
+
+You can also do a full-multi-line CHUNK of R stuff:
+Create with ` ```{r}` on the first line and ` ``` ` on the last. 
+
+```{r}
+3+3
+```
+
+Settings to control how R chunks appear:
+
+- `eval=TRUE`: which actually runs the code; if `eval=FALSE`, it shows the code but doesn't run it. 
+
+```{r, eval=FALSE}
+#this will be shown but not evaluated 
+3+3
+```
+
+- `echo=TRUE`: which shows the code; if `echo=FALSE`, the code can run without being seen. 
+
+```{r, eval=TRUE, echo=FALSE}
+#this will be evaluated but now shown
+4+4
+```
+
+- `warnings=FALSE`: which will turn off warning. 
+
+- `fig.cap = "figure caption"` adds a figure caption. 
+
+- `fig.width = 7` example of figure width. 
+
+- `fig.height = 4` example of figure height. 
+
+# Bringing in real data
+
+To manually set working directory while building up my RMarkdown file, just fo to Section > Set working directory > Source file locations. 
+
+```{r read data, }
+library(readr)
+energy <- read_csv("../data/IRENA data.csv", skip=1) #`skip=` to skip the first row at the top that is not actual data 
+```
+
+```{r explore data, }
+library(dplyr)
+energy %>% names
+energy %>% head
+energy %>% tail
+energy %>% pull(Technology) %>% unique %>% sort
+```

@@ -28,7 +28,7 @@ This is **bold** (that's double asterisks). Or *italics*. Or `code`.
 2. second item. 
 
 To add a hyperlink, do `[link text](url)`. 
-For example, [go here](https://www.sewanee.edu). 
+For example, [go to the Sewanee website](https://www.sewanee.edu). 
 
 To link to sections of your document, do `[link text](#section-name)`. 
 For example, go to [Markdown](#markdown). 
@@ -102,3 +102,24 @@ energy %>% head
 energy %>% tail
 energy %>% pull(Technology) %>% unique %>% sort
 ```
+
+### Filtering code now
+Here is a new section where I talk about what I's doing. 
+
+```{r}
+#filter data
+fenergy <- energy %>% 
+  filter(`Country/area` == "Germany")
+```
+
+```{r}
+library(ggplot2)
+library(plotly)
+p <- ggplot(fenergy,
+       aes(x = Year,
+           y = as.numeric(`Electricity statistics`),
+           fill = Technology))+
+  geom_area()
+ggplotly(p)
+```
+

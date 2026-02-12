@@ -44,9 +44,11 @@ Should be more space now.
 
 **To include an image -- fun!**
 First put an image inside the folder where you `Rmd` file is located. 
-Then type `![](../images/full_image_filename_here){width="50%"}` 
+Then type `![](../../images/full_image_filename_here){width="50%"}`. 
 
-![](../images/test_image.jpg){width="50%"}
+ The `../` backs up your location. So we are able to get something to you in "index.Rms" in "docs" in "test_repo" and pull an image from "images" folder since they are both in "repos" folder. 
+
+![](../../images/test_image.jpg){width="50%"}
 
 # RMarkdown
 
@@ -92,7 +94,7 @@ To manually set working directory while building up my RMarkdown file, just fo t
 
 ```{r read data, }
 library(readr)
-energy <- read_csv("../data/IRENA data.csv", skip=1) #`skip=` to skip the first row at the top that is not actual data 
+energy <- read_csv("../../data/IRENA data.csv", skip=1) #`skip=` to skip the first row at the top that is not actual data 
 ```
 
 ```{r explore data, }
